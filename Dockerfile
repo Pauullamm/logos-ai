@@ -5,7 +5,7 @@ FROM node:18-alpine
 WORKDIR /server
 
 # Copy package.json and package-lock.json first (if available) to optimize caching
-COPY package*.json ./
+COPY server/package*.json ./
 
 # Install dependencies
 RUN npm install
