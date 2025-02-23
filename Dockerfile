@@ -2,7 +2,7 @@
 FROM node:18-alpine
 
 # Set the working directory to the current directory (where Dockerfile is located)
-WORKDIR /usr/src/app
+WORKDIR /server
 
 # Copy package.json and package-lock.json first (if available) to optimize caching
 COPY package*.json ./
@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copy all other files (including server.js)
-COPY . .
+COPY server ./
 
 # Expose the port your app runs on
 EXPOSE 8080
