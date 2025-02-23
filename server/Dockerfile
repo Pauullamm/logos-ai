@@ -1,9 +1,6 @@
 # Use an official Node runtime as a parent image
 FROM node:18-alpine
 
-# Set the working directory in the container
-WORKDIR /server
-
 # Copy package files and install dependencies
 COPY package*.json ./
 RUN npm install
@@ -15,5 +12,5 @@ COPY . .
 EXPOSE 8080
 
 # Start the server
-CMD ["node", "server/server.js"]
+CMD ["node", "server.js"]
 
