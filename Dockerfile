@@ -2,7 +2,7 @@
 FROM node:18-alpine
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /server
 
 # Copy package files and install dependencies
 COPY package*.json ./
