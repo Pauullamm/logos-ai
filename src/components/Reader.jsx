@@ -4,7 +4,6 @@ import { fetchBookChapter } from "../data/api";
 import { Volume2 } from "lucide-react";
 import GreekWord from "./GreekWord";
 import WordInspector from "./inspector/WordInspector";
-import Navigation from "./Navigation";
 
 const Reader = () => {
   const { bookId, chapterId } = useParams();
@@ -34,7 +33,7 @@ const Reader = () => {
 
   const handleReadAloud = async (text) => {
     try {
-      const response = await fetch("http://localhost:8080/api/tts", {
+      const response = await fetch("https://logos-ai-sub.koyeb.app/api/tts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
@@ -57,10 +56,10 @@ const Reader = () => {
   };
 
   return (
-    <main className="flex">
-      <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
+    <main className="flex h-screen">
+      <div className="flex md:flex-row flex-1 overflow-hidden">
         {/* Main Reader Section */}
-        <div className="flex-1 p-4 overflow-x-auto min-w-0">
+        <div className="flex-1 bg-[#F0F0D7] p-4 overflow-x-auto min-w-0">
           <h2 className="text-2xl font-bold mb-4">
             {book.title} - Chapter {chapterId}
           </h2>
@@ -71,8 +70,8 @@ const Reader = () => {
                 key={key}
                 to={`/book/${book.bookId}/chapter/${key}`}
                 className={`px-3 py-1 border rounded whitespace-nowrap ${key === chapterId
-                  ? "bg-blue-500 text-white"
-                  : "bg-white text-blue-500 hover:bg-blue-100"
+                  ? "bg-[#B2C9AD] text-black"
+                  : "bg-white text-black hover:bg-[#91AC8F] duration-200"
                   }`}
               >
                 {key}
@@ -104,7 +103,7 @@ const Reader = () => {
                       <Volume2 size={16} />
                     </button>
                   </div>
-                  <p className="text-lg text-gray-600 mt-2 whitespace-normal">
+                  <p className="text-base text-gray-700 mt-2 whitespace-normal">
                     {verse.english}
                   </p>
                 </div>
@@ -113,9 +112,7 @@ const Reader = () => {
           </div>
         </div>
         {/* Word Inspector Section */}
-        <aside className="w-full md:w-1/3 p-6 overflow-auto">
-          <WordInspector />
-        </aside>
+        <WordInspector />
       </div>
     </main>
   );

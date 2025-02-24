@@ -15,10 +15,10 @@ const Navigation = () => {
   return (
     <>
       {/* Mobile header */}
-      <div className="md:hidden p-4 bg-gray-800 text-white fixed w-full flex justify-between items-center h-16">
-        <div className="text-lg font-bold">RcV-Greek Reader</div>
+      <div className="md:hidden px-4 bg-[#B2C9AD] text-white fixed w-full flex justify-between items-center h-16 z-50">
+        <div className="text-xl text-black font-bold">Logos AI</div>
         <button 
-          className="p-2 hover:bg-gray-700 rounded"
+          className="p-2 hover:bg-[#66785F] duration-300 rounded"
           onClick={() => setSidebarOpen(!sidebarOpen)}
         >
           {sidebarOpen ? <X /> : <Menu />}
@@ -26,7 +26,7 @@ const Navigation = () => {
       </div>
       {/* Sidebar */}
       <div
-        className={`bg-gray-200 p-4 h-screen overflow-auto ${
+        className={`bg-[#B1C29E] p-6 pb-12 h-screen overflow-auto ${
           sidebarOpen ? "block" : "hidden"
         } md:block`}
       >
@@ -39,7 +39,7 @@ const Navigation = () => {
               <li key={book.bookId} className="flex items-center justify-center">
                 <Link
                   to={`/book/${book.bookId}/chapter/${defaultChapter}`}
-                  className="block w-full text-center py-2 bg-white rounded text-gray-600 hover:bg-gray-100"
+                  className="block w-full text-center p-2 border border-gray-400 bg-gray-100 rounded text-gray-800 hover:bg-gray-300 duration-200"
                   onClick={() => setSidebarOpen(false)} // Close sidebar on mobile selection
                 >
                   {book.trunc}

@@ -9,11 +9,11 @@ function App() {
     <WordInspectorProvider>
       <HashRouter>
         {/* Main container wrapping both Navigation and Content */}
-        <div className="flex h-screen">
+        <div className="flex h-screen bg-[#F0F0D7]">
           <Navigation />
-          
+
           {/* Content area where routes will render */}
-          <div className="flex-1 overflow-auto p-4">
+          <div className="flex-1 overflow-auto pt-16 md:pt-0">
             <Routes>
               <Route
                 path="/book/:bookId/chapter/:chapterId"
@@ -21,7 +21,13 @@ function App() {
               />
               <Route
                 path="*"
-                element={<div>Select a book from the navigation.</div>}
+                element={
+                <div className="h-full flex justify-center items-center">
+                  <h1 className="place-self-center">
+                    Select a book from the navigation.
+                  </h1>
+                </div>
+                }
               />
             </Routes>
           </div>
