@@ -8,6 +8,7 @@ export const useWordInspector = () => useContext(WordInspectorContext);
 export const WordInspectorProvider = ({ children }) => {
   const [isInspectionActive, setInspectionActive] = useState(false);
   const [wordDetails, setWordDetails] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const inspectWord = async (data) => {
     try {
@@ -32,6 +33,8 @@ export const WordInspectorProvider = ({ children }) => {
     } catch (error) {
       console.error('Error inspecting word:', error);
       setWordDetails({ error: error.message });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -42,6 +45,7 @@ export const WordInspectorProvider = ({ children }) => {
       inspectWord,
       wordDetails,
       setWordDetails,
+      loading
     }}>
       {children}
     </WordInspectorContext.Provider>
