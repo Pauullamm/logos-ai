@@ -9,15 +9,17 @@
 
 ## Key Features
 
-* Reader
-  - Read through interlinear Greek and English text
+* Reader 📖
+  - Read through interlinear Greek and English text from the New Testament
+  - Text-to-speech functionality to help with pronunciation
+  - Note taking with each verse
  
-* Ask AI
+* Ask AI ✨
   - AI functionality that allows you to highlight words that you would like to know more about
   - Breaks down grammar usage and morphology for the reader
 
-* Cross platform
-  - Windows, macOS and Linux ready.
+* Cross platform 🍎🪟🐧
+  - Configure for Windows, macOS and Linux platforms where desired.
 
 ## How To Use
 
