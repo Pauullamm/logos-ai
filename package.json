@@ -7,13 +7,17 @@
   "type": "module",
   "main": "electron-main.js",
   "license": "MIT",
-
+  "exports": {
+    ".": {
+      "import": "./preload.mjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "electron": "vite build && electron .",
+    "electron": "npm run build && electron .",
     "dist": "electron-builder"
   },
   "dependencies": {
@@ -22,10 +26,13 @@
     "@heroicons/react": "^2.2.0",
     "@mui/material": "^6.4.5",
     "@tailwindcss/vite": "^4.0.7",
+    "circular-json": "^0.5.9",
     "cors": "^2.8.5",
+    "electron-store": "^10.0.1",
     "express": "^4.21.2",
     "lucide": "^0.475.0",
     "lucide-react": "^0.475.0",
+    "process": "^0.11.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-draggable": "^4.4.6",
@@ -52,7 +59,8 @@
     "productName": "Logos AI",
     "files": [
       "dist/**/*",
-      "electron-main.js"
+      "electron-main.js",
+      "preload.mjs"
     ],
     "mac": {
       "category": "public.app-category.utilities",

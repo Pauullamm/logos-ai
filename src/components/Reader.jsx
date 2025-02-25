@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { fetchBookChapter } from "../data/api";
+import { fetchBookChapter, fetchNoteData } from "../data/api";
 import { Volume2 } from "lucide-react";
 import GreekWord from "./GreekWord";
 import WordInspector from "./inspector/WordInspector";
+import Note from "./Note";
+
 
 const Reader = () => {
   const { bookId, chapterId } = useParams();
@@ -55,6 +57,7 @@ const Reader = () => {
     }
   };
 
+
   return (
     <main className="flex h-screen">
       <div className="flex md:flex-row flex-1 overflow-hidden">
@@ -102,6 +105,12 @@ const Reader = () => {
                     >
                       <Volume2 size={16} />
                     </button>
+                    {/*Add notes to the verse */}
+                    <Note
+                      bookInfo={bookId}
+                      chapterId={chapterId}
+                      verseId={verse.verseNum}
+                    />
                   </div>
                   <p className="text-base text-gray-700 mt-2 whitespace-normal">
                     {verse.english}
