@@ -1,18 +1,25 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import path from "path";
 import { fileURLToPath } from "url";
+import Store from 'electron-store'
+
+
+const store = new Store({
+  "name": "notesData",
+  "defaults": {},
+})
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 function createWindow() {
   const win = new BrowserWindow({
     width: 1024,
     height: 768,
     webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
-      webSecurity: false
+      contextIsolation: true,
+      nodeIntegration: false,
+      webSecurity: false,
+      preload: path.join(__dirname, 'preload.mjs'),
     },
   });
 
@@ -32,7 +39,17 @@ function createWindow() {
   }
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  createWindow();
+
+  ipcMain.handle('electron-store-get', (event, key) => {
+      return store.get(key);
+  });
+
+  ipcMain.handle('electron-store-set', (event, key, val) => {
+      store.set(key, val);
+  });
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
